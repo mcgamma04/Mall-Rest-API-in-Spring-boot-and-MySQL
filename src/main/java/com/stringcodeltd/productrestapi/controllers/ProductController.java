@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
@@ -47,7 +49,7 @@ public class ProductController {
   }
   
   @RequestMapping(value="/product/",method= RequestMethod.POST)
-  public Product createProduct(@RequestBody Product product) {
+  public Product createProduct(@Valid @RequestBody Product product) {
 	  return repository.save(product);
   }
   
