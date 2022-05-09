@@ -13,11 +13,11 @@ public class Product {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
-	@NotNull
+	@NotNull(message="Name field must be filed")
 	private String name;
 	@Size(max=100)
 	private String description;
-	@Min(value=200, message="The minimum prices should be 500 ")
+	@Min(value=500, message="The minimum prices should be 500 ")
 	private int price;
 
 	public int getId() {

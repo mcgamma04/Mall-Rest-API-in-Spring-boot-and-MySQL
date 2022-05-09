@@ -26,8 +26,13 @@ import org.springframework.web.multipart.MultipartFile;
 import com.stringcodeltd.productrestapi.entities.Product;
 import com.stringcodeltd.productrestapi.model.ProductRepository;
 
+import io.swagger.v3.oas.annotations.Hidden;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 
 @RestController
+@Tag(name="Mall Rest Endpoints")
 public class ProductController {
 	@Autowired
 	ProductRepository repository;
@@ -42,7 +47,7 @@ public class ProductController {
 	}
 	
   @RequestMapping(value="/product/{id}",method =  RequestMethod.GET)
-  
+  @Operation(summary="Return products based on Product ID",description="Take ID from user and returns the product that match the ID")
   public Product getProduct(@PathVariable("id") int id) {
 	  return repository.findById(id).get();
 	  
@@ -68,6 +73,7 @@ public class ProductController {
 	  file.transferTo(new File(UPLOAD_DIR+file.getOriginalFilename()));
 	  return true;
   }
+  
   
   @GetMapping("/download/{filename}")
   public ResponseEntity<byte[]>download(@PathVariable("filename") String filename) throws IOException{
